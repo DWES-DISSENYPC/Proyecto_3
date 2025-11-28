@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!--Este es llamado por la raiz del proyecto que es recogico por MainControler que reenvia aqui-->
+
+    <h1>-BIENVENIDO-</h1>
+    <a th:href="@{/cursos}">Ver cursos</a><!--Llama a /curso que esta en CursosController 
+    que tiene un RequesMapping por lo que controla todas las llamadas a /cursos
+    y luego hay un GetMapping que no tiene ruta lo que indica que es la ruta de inicio de /cursos-->
+    <a th:href="@{/estudiantes/registrar}">¡Regístrate!</a> <!--Llama a estudiantes /estudiantes que esta en un RequesMaping 
+    en EstudianteControler y llama a /registrar que hya un GetMapping-->
+</body>
+</html>

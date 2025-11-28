@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Llamado desde el controlador en estudianteController-->
+    <!-- con th:action manejamos el envio a un controlador-->
+    <form th:action="@{/estudiantes/registrar}" th:object="${estudiante}" method="post">
+        <!--con @ por ser una url del th************con $ por ser un dato del model capturamos el objeto que viene del 
+        model para asociarlo a cada campo del formulario-->
+        <label>Nombre:</label>
+        <input type="text" th:field="*{nombre}">
+        <!--******** con esto y usando el * capturamos el campo nombre  para asignarle el valor introducido en el input-->
+        <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" style = "color: red"></span>
+        <!--Para los errores capturamos el error de ese campo si ha habido y presentamos su mensaje-->
+
+        <label>Email:</label>
+        <input type="email" th:field="*{email}">
+        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style = "color: red"></span>
+        <!--Para los errores capturamos el error de ese campo si ha habido y presentamos su mensaje-->
+
+        <label>Curso:</label>
+        <select name="id_curso">
+            <option disabled selected>Selecciona un curso</option>
+            <option th:each="c : ${lista_cursos}" th:value="${c.id}" th:text="${c.nombre}"></option> 
+            <!-- Creamos un option por cada elemento de la lista y ponemos de valor el id y de texto a mostrar el nombre-->
+             <!--Usamos el ${} Por que viene del modelo.-->
+        </select>
+
+        <p th:if ="${error}" style="color: red;" th:text="${error}"></p>
+        <!--Este error no lo captura el BindingResult está creado personalizado desde el controlador-->
+
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>

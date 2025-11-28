@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+        <span th:text="${curso.nombre + ' (' + curso.plazas_disponibles + ')'}"></span><br>
+        <!--cursos es recogido por el model del controlador que llama a este html
+        con th:text sustituimos el contenido del span por esa concatenacion donde el ${} nos indica
+        que es una variable del model. y se concatena con + y comillas simples  -->
+        <span th:text="${curso.descripcion}"></span>
+        <p>Estudiantes ya matriculados en este curso:</p> 
+        <p th:each="e : ${curso.estudiantes}"> <!--Aqui hacemos otro each para mostrar todos los 
+            estudiantes que esten en la lista de estudiantes matriculados-->
+            <span th:text="${e.nombre}"></span>
+        </p>
+    </p>
+
+    <a th:href="@{/}">Volver a la pagina principal</a> <!--Ruta a la raiz del proyecto con la @ -->
+</body>
+</html>
